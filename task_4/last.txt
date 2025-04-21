@@ -1,0 +1,42 @@
+from fpdf import FPDF
+
+# Create a PDF document
+pdf = FPDF()
+pdf.add_page()
+pdf.set_font("Arial", size=12)
+
+# Title
+pdf.set_font("Arial", 'B', 14)
+pdf.cell(200, 10, txt="Pointer Output Summary", ln=True, align='C')
+pdf.ln(10)
+
+# Explanation content
+pdf.set_font("Arial", size=12)
+output_text = """\
+Output of the code:
+
+Assuming:
+int a = 7;
+int *aPtr = &a;
+
+The output will be something like:
+
+Address of a is 0x61ff0c
+Value of aPtr is 0x61ff0c
+
+Value of a is 7
+Value of *aPtr is 7
+
+Showing that * and & are complements of each other
+&*aPtr = 0x61ff0c
+*&aPtr = 0x61ff0c
+
+(Note: The actual address (like 0x61ff0c) will vary at runtime.)
+"""
+
+for line in output_text.split('\n'):
+    pdf.multi_cell(0, 10, line)
+
+# Save the PDF
+pdf_output_path = "/mnt/data/Pointer_Code_Output.pdf"
+pdf.output(pdf_output_path)
