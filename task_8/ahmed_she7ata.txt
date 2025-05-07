@@ -1,0 +1,59 @@
+from fpdf import FPDF
+
+# Create a PDF object
+pdf = FPDF()
+pdf.add_page()
+pdf.set_auto_page_break(auto=True, margin=15)
+pdf.set_font("Arial", size=12)
+
+# Summary content
+summary = """
+C Programming Summary
+
+What is a macro in C, and how is it defined?
+A macro in C is a preprocessor directive used to define constants or code snippets that are substituted before compilation. It is defined using #define.
+Example:
+#define PI 3.14
+#define SQUARE(x) ((x) * (x))
+
+What is the difference between macros and functions?
+Macros:
+- Preprocessed before compilation.
+- No type checking.
+- Faster, no function call overhead.
+- Harder to debug.
+Functions:
+- Compiled normally with type checking.
+- Easier to debug.
+- Can be inlined but usually have overhead.
+
+What do #ifdef, #ifndef, and #endif do?
+These are conditional compilation directives.
+- #ifdef MACRO: Checks if MACRO is defined.
+- #ifndef MACRO: Checks if MACRO is not defined.
+- #endif: Ends the conditional block.
+
+What does malloc() do, and what type does it return?
+malloc() allocates memory at runtime and returns a void pointer (void*) to the allocated space.
+
+What is the difference between malloc, calloc, and realloc?
+- malloc: Allocates memory but does not initialize it.
+- calloc: Allocates and initializes memory to zero.
+- realloc: Resizes previously allocated memory.
+
+Why must we always call free() after dynamic allocation?
+To release memory back to the system and avoid memory leaks.
+
+What is a header guard, and what problem does it solve?
+A header guard prevents a header file from being included multiple times, avoiding redefinition errors.
+
+What is the typical format of a header guard?
+#ifndef HEADER_NAME_H
+#define HEADER_NAME_H
+// code
+#endif
+
+How does the preprocessor handle nested includes?
+The preprocessor expands all includes. Header guards prevent the same file from being processed more than once, even if nested.
+"""
+
